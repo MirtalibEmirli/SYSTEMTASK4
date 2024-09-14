@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SYSTEMTASK4"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Task4" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <ListView ItemsSource="{Binding carList,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" x:Name="carListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Model" DisplayMemberBinding="{Binding Model}" Width="200"/>
+                    <GridViewColumn Header="Vendor" DisplayMemberBinding="{Binding Vendor}" Width="200"/>
+                    <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+       <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+            <GroupBox Header="Mode" Margin="10" Width="128">
+                <StackPanel Orientation="Horizontal" Height="28" Margin="0,0,-10,0" >
 
+                    <RadioButton Name="Single2"  Content="Single" GroupName="Mode" IsChecked="True"/>
+                   
+                    <RadioButton x:Name="Multi" Content="Multi" GroupName="Mode"/>
+                </StackPanel>
+            </GroupBox>
+
+            <Label Content="Time" Margin="10,0"/>
+            <TextBox x:Name="time" Width="100" Margin="0,0,10,0" 
+         Text="{Binding Timer, StringFormat='{}{0:hh\\:mm\\:ss}', Mode=OneWay}"/>
+
+
+            <Button Width="90" Content="Start" Margin="10,0" Click="Button_Click"/>
+            <Button Width="90" Content="Cancel" Margin="10,0" Click="Button_Click_1"  />
+        </StackPanel>
     </Grid>
+    
+    
 </Window>
